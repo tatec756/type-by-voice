@@ -8,10 +8,6 @@ Hold a hotkey, speak, release. Your words are transcribed locally with
 editor. No cloud, no API keys, no subscriptions. Your voice never leaves your
 machine.
 
-> 🎬 **Demo GIF coming soon** — a ~15s clip of speaking into Slack/an editor.
-> _(To add it: record with `peek`, save as `docs/demo.gif`, and replace this
-> line with `![demo](docs/demo.gif)`.)_
-
 ---
 
 ## Why another dictation tool?
